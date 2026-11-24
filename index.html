@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>横田ゼミ 卒業論文アンケート</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #f5f6fa;
+      padding: 50px 20px;
+      color: #333;
+    }
+    .container {
+      background: white;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 30px 20px;
+      border-radius: 15px;
+    }
+    a {
+      display: block;
+      background: #4285f4;
+      color: white;
+      padding: 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      margin-top: 25px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>横田ゼミ<br>卒業論文アンケート</h2>
+    <p id="message">アンケートページへ移動しています。</p>
+    <a id="link" href="#">アンケートを開始する</a>
+  </div>
+
+  <script>
+    const forms = [
+      "https://forms.gle/UiYsQhNR682c7zXE6",
+      "https://forms.gle/MvY2jDXbj8oTty1S7"
+    ];
+
+    // 同じタブで再読み込みしても割り当てを維持
+    let selectedForm = sessionStorage.getItem("selectedForm");
+
+    if (!forms.includes(selectedForm)) {
+      selectedForm = forms[Math.floor(Math.random() * 2)];
+      sessionStorage.setItem("selectedForm", selectedForm);
+    }
+
+    // 自動転送と、手動用リンクを設定
+    document.getElementById("link").href = selectedForm;
+
+    setTimeout(function() {
+      window.location.replace(selectedForm);
+    }, 500);
+  </script>
+</body>
+</html>
